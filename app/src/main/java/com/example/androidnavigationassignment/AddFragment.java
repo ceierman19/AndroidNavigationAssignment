@@ -1,5 +1,6 @@
 package com.example.androidnavigationassignment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,17 +68,24 @@ public class AddFragment extends Fragment {
         view.findViewById(R.id.buttonAddSensor).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View addSensorButton) {
+
                 EditText sensorTypeField = view.findViewById(R.id.editTextSensorType);
                 String sensorType = sensorTypeField.getText().toString();
 
                 EditText sensorLocationField = view.findViewById(R.id.editTextSensorLocation);
                 String sensorLocation = sensorLocationField.getText().toString();
 
-                Bundle bundle = new Bundle();
-                bundle.putString("sensorType", sensorType);
-                bundle.putString("sensorLocation", sensorLocation);
+                if (!sensorType.isEmpty() && !sensorLocation.isEmpty()) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("sensorType", sensorType);
+                    bundle.putString("sensorLocation", sensorLocation);
 
-                Navigation.findNavController(view).navigate(R.id.action_addFragment_to_sensorFragment2, bundle);
+                    Navigation.findNavController(view).navigate(R.id.action_addFragment_to_sensorFragment2, bundle);
+                }
+                else {
+                    Toast toast = Toast.makeText(getActivity(),"Please enter a sensor type and location.", Toast.LENGTH_LONG);
+                    toast.show();
+                }
             }
         });
 
