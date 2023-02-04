@@ -35,6 +35,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/textViewSensorInfo"
+            android:layout_width="228dp"
+            android:layout_height="247dp"
+            android:layout_marginTop="56dp"
+            android:background="@color/material_dynamic_neutral90"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSensorsHeader" />
+
         <Button
             android:id="@+id/buttonSensorDown"
             android:layout_width="wrap_content"
@@ -45,23 +57,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sensorListTextBox"
-            app:layout_constraintVertical_bias="0.688" />
-
-        <EditText
-            android:id="@+id/sensorListTextBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:clickable="false"
-            android:enabled="false"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSensorsHeader" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSensorInfo"
+            app:layout_constraintVertical_bias="0.281" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

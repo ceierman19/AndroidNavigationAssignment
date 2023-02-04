@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,31 +64,26 @@ public class SensorFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sensor, container, false);
+        TextView sensorInfoTextView = view.findViewById(R.id.textViewSensorInfo);
 
-//        String type, location;
-//        if (getArguments().getString("sensorType").equals(null)) {
-//            type = "";
-//        }
-//        else {
-//            type = getArguments().getString("sensorType");
-//        };
-//
-//        if (getArguments().getString("sensorLocation").equals(null)) {
-//            location = "";
-//        }
-//        else {
-//            location = getArguments().getString("sensorLocation");
-//        };
-//
-//        EditText sensorListTextBox = view.findViewById(R.id.sensorListTextBox);
-//        if (!(sensorListTextBox.getText().toString().isEmpty())) {
-//            sensorListTextBox.append(type + location + "\n");
-//        }
+        if (getArguments() == null) {
+            Toast toast = Toast.makeText(getActivity(),"No sensors. Click the plus button to add one!", Toast.LENGTH_LONG);
+            toast.show();
+        }
+        else {
+            String sensorInfo = getArguments().getString("sensorInfo");
+            String sensorType = getArguments().getString("sensorType");
+            String sensorLocation = getArguments().getString("sensorLocation");
+            sensorInfoTextView.append(sensorInfo + sensorType + " - " + sensorLocation + "\n");
+        }
 
         view.findViewById(R.id.floatingActionButtonPlus).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View plusButton) {
-                Navigation.findNavController(view).navigate(R.id.action_sensorFragment_to_addFragment);
+                Bundle oldSensorsBundle = new Bundle();
+                String sensorInfo = sensorInfoTextView.getText().toString();
+                oldSensorsBundle.putString("sensorInfo", sensorInfo);
+                Navigation.findNavController(view).navigate(R.id.action_sensorFragment_to_addFragment, oldSensorsBundle);
             }
         });
 
